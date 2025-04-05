@@ -25,7 +25,6 @@ class DetailsPage extends StatelessWidget {
   }
 }
 
-
 //---------------------------------------------------------------------
 //---------------Widget affichant la liste des informations------------
 //---------------------------------------------------------------------
@@ -64,10 +63,14 @@ class _VideoDetail extends StatelessWidget {
   // Méthode retournant la description d'une vidéo
   Widget _getDescription() => Text(
         video.description,
-        style: TextStyle(fontSize: 22, color: Colors.white),
+        style: TextStyle(
+          fontSize: 22,
+          color: Colors.white,
+          fontFamily: 'CastoroCustom',
+          fontStyle: FontStyle.italic,
+        ),
       );
 }
-
 
 //---------------------------------------------------------------------
 //------------Widget affichant l'image en grand d'une vidéo------------
@@ -88,7 +91,6 @@ class _DetailsPoster extends StatelessWidget {
     );
   }
 }
-
 
 //---------------------------------------------------------------------
 //--------------Widget traitant les mots-clés de la vidéo--------------

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.orange_valley_caa"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = flutter.33
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
