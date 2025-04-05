@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      getVideoFromApi().then((value)=> print(value));
     return Scaffold(
       appBar: AppBar(
         title: Text('Orange Valley CAA'),
@@ -17,8 +16,19 @@ class HomePage extends StatelessWidget {
         titleTextStyle: TextStyle(color: Colors.white)),
       body: Container(
         color: backgroundColor,
-        child: VideosGrid(videos: getFakeVideos()),
-      ),
+        child: FutureBuilder(
+          future: getVideoFromApi(), // pour indiquer la façon de récupérer les données
+          builder: (context, snapshot) { //Si l'acceptation  de la requête est en cours est autorisee
+            if (snapshot.connectionState == ConnectionState.waiting)
+              return Center(child: CircularProgressIndicator());//Renvoyer un indicateur de progression circulaire
+            // Si la requête a échoué, afficher un message d'erreur
+            else if (snapshot.hasError) // Si la requête a échoué, afficher un message d'erreur
+              // Si la requête a échoué, afficher un message d'erreur
+              return Center(child: Text(snapshot.error.toString()));
+            else // Si la requête a réussi, afficher la liste des vidéos
+              return VideosGrid(videos: snapshot.data ?? []);
+          },
+      ),)
     );
   }
 }
