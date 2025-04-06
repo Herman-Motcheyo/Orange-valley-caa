@@ -81,14 +81,16 @@ class _DetailsPoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Hero(
+      tag: posterUrl, // pour l'animation de transition entre les pages
+      child: Container(
       width: double.infinity,
       height: 200,
       child: Image.network(
         posterUrl,
         fit: BoxFit.fitWidth,
       ),
-    );
+    ));
   }
 }
 

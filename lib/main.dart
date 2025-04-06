@@ -13,7 +13,7 @@ class ValleyOrangeApp extends StatelessWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  DetailsPage(video: getFakeVideos().last),
+      home:  HomePage(),
     );
   }
   }

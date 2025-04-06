@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orange_valley_caa/models/video.dart';
-
+import 'package:orange_valley_caa/pages/detail_page.dart';
 //-----------------------------------------------------
 //------------Widget affichant une GridView------------
 //-----------------------------------------------------
@@ -15,9 +15,12 @@ class VideosGrid extends StatelessWidget {
       crossAxisCount: 2,
       children: [
         for (var video in videos)
-          _VideoTile(
+        GestureDetector(   //MaterialPageRoute pour gerer les transitions entre les pages
+          onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsPage(video: video))),
+          child: _VideoTile(
             imageUrl: video.thumbnail,
             title: video.name,
+          ),
           )
       ],
     );
@@ -40,7 +43,8 @@ class _VideoTile extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: Stack(children: [
         //----------Image----------
-        Container(
+        Hero(tag: imageUrl, // pour l'animation de transition entre les pages
+        child: Container(
           width: double.infinity,
           height: double.infinity,
           child: ClipRRect(
@@ -48,7 +52,7 @@ class _VideoTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(imageUrl, fit: BoxFit.cover),
           ),
-        ),
+        ),),
         //----------Titre----------
         Align(
           // pour positionner, en bas au centre, dans la Stack
